@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Key Sequence Detection (KONAMI CODE)</title>
+	<script type="text/javascript" src="http://www.cornify.com/js/cornify.js"></script>
+</head>
+<body>
+	<script>
+		const pressed = [];
+		const secretWord = 'fernast';
+		window.addEventListener('keyup', (e) => {
+			pressed.push(e.key);
+			//splice method adds/removes items to/from an array, and returns the removed item(s)
+			//in this case it is going to remove the first item from the array when the array length is greater than secretWord length starting from the last array's item (-secretWord.length - 1)
+			pressed.splice(-secretWord.length - 1, pressed.length - secretWord.length);
+			
+			if (pressed.join('').includes(secretWord)) {
+				console.log('DING!! DING!!');
+				cornify_add();
+			}
+			console.log(pressed);
+		});
+	</script>
+</body>
+</html>
